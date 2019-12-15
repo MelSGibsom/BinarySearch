@@ -1,31 +1,30 @@
 package ua.Romanov.Alexandr;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class BinSearch {
-    // Merges two subarrays of arr[].
-    // First subarray is arr[l..m]
-    // Second subarray is arr[m+1..r]
+    // Слияние двух подмассивов arr[].
+    // Первый подмассив arr[l..m]
+    // Второй подмассив arr[m+1..r]
     static void merge(int arr[], int l, int m, int r) {
-        // Find sizes of two subarrays to be merged
+        // Find sizes of two помассивы to be merged
         int n1 = m - l + 1;
         int n2 = r - m;
 
-        /* Create temp arrays */
+        /* Создание временных массивов */
         int L[] = new int[n1];
         int R[] = new int[n2];
 
-        /*Copy data to temp arrays*/
+        /*Копирование данных во временные массивы*/
         for (int i = 0; i < n1; ++i)
             L[i] = arr[l + i];
         for (int j = 0; j < n2; ++j)
             R[j] = arr[m + 1 + j];
 
 
-        /* Merge the temp arrays */
+        /* Слияние временных массивов */
 
-        // Initial indexes of first and second subarrays
+        // Первоначальные индексы первого и второго подмассивов
         int i = 0, j = 0;
 
         // Initial index of merged subarry array
@@ -41,14 +40,14 @@ public class BinSearch {
             k++;
         }
 
-        /* Copy remaining elements of L[] if any */
+        /* Копирование оставшихся элементов L[], если таковые были */
         while (i < n1) {
             arr[k] = L[i];
             i++;
             k++;
         }
 
-        /* Copy remaining elements of R[] if any */
+        /* Копирование оставшихся элементов R[], если таковые были */
         while (j < n2) {
             arr[k] = R[j];
             j++;
@@ -56,18 +55,18 @@ public class BinSearch {
         }
     }
 
-    // Main function that sorts arr[l..r] using
-    // merge()
+    // Основная функция, которая сортирует arr[l..r] с использованием
+    // слияния()
     static void sort(int arr[], int l, int r) {
         if (l < r) {
             // Find the middle point
             int m = (l + r) / 2;
 
-            // Sort first and second halves
+            // Сортировать первую и вторую половинки
             sort(arr, l, m);
             sort(arr, m + 1, r);
 
-            // Merge the sorted halves
+            // Слияние отсортированных половинок
             merge(arr, l, m, r);
         }
     }
@@ -99,7 +98,7 @@ public class BinSearch {
         return -1;
     }
 
-    /* A utility function to print array of size n */
+    /* выод массива в консоль */
     static void printArray(int arr[]) {
         //System.out.print("Исходный массив: ");
         int n = arr.length;
@@ -122,7 +121,6 @@ public class BinSearch {
         System.out.print("Исходный массив: ");
         printArray(arr);
         System.out.println("чтобы искать число, необходимо сначала отсортировать массив по порядку");
-
         sort(arr, 0, arr.length - 1);
         System.out.print("Отсортированный массив: ");
         printArray(arr);
@@ -132,8 +130,6 @@ public class BinSearch {
             int elementToSearch = scanner.nextInt();
             int index = binarySearch(arr, elementToSearch);
             print(elementToSearch, index);
-
-
         }
 
 
